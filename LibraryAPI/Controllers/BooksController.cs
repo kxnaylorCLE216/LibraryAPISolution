@@ -1,9 +1,9 @@
-﻿using LibraryAPI.Data;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using LibraryAPI.Data;
 using LibraryAPI.Models.Books;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,10 +12,14 @@ namespace LibraryAPI.Controllers
     public class BooksController : ControllerBase
     {
         private readonly LibraryDataContext _context;
+        private readonly MapperConfiguration _config;
+        private readonly IMapper _mapper;
 
-        public BooksController(LibraryDataContext context)
+        public BooksController(LibraryDataContext context, MapperConfiguration config, IMapper mapper)
         {
             _context = context;
+            _config = config;
+            _mapper = mapper;
         }
 
         [HttpGet("books/{id:int}")]
@@ -23,16 +27,10 @@ namespace LibraryAPI.Controllers
         {
             var response = await _context.Books
                 .Where(b => b.Id == id && b.IsInInventory)
-                .Select(b => new GetBookDetailsResponse
-                {
-                    Id = b.Id,
-                    Title = b.Title,
-                    Author = b.Author,
-                    AddedToInventory = b.AddedToInventory,
-                    Genre = b.Genre
-                }).SingleOrDefaultAsync();
+                .ProjectTo<GetBookDetailsResponse>(_config)
+                .SingleOrDefaultAsync();
 
-            if(response == null)
+            if (response == null)
             {
                 return NotFound();
             }
@@ -43,18 +41,11 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet("books")]
-
         public async Task<ActionResult> GetAllBooks()
         {
             var books = await _context.Books
                 .Where(book => book.IsInInventory == true)
-                .Select(book => new GetBooksResponseItem
-                { 
-                    Id = book.Id,
-                    Title = book.Title,
-                    Author = book.Author,
-                    Genre= book.Genre
-                })
+                .ProjectTo<GetBooksResponseItem>(_config)
                 .ToListAsync();
 
             var response = new GetBooksResponse
