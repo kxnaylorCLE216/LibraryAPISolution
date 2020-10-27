@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -16,7 +14,6 @@ namespace LibraryApiIntegrationTests
         {
             _client = factory.CreateDefaultClient();
         }
-
 
         // 1. Do we get a 200?
         [Fact]
@@ -48,8 +45,8 @@ namespace LibraryApiIntegrationTests
             var response = await _client.GetAsync("/status");
             var content = await response.Content.ReadAsAsync<GetStatusResponse>();
 
-            Assert.Equal("Everything is Good", content.message);
-
+            Assert.Equal("The Crow Flies at Midnight", content.message);
+            Assert.Equal(new DateTime(1969, 4, 20, 23, 59, 00), content.createdAt);
         }
 
         public class GetStatusResponse
@@ -57,7 +54,5 @@ namespace LibraryApiIntegrationTests
             public string message { get; set; }
             public DateTime createdAt { get; set; }
         }
-
-
     }
 }

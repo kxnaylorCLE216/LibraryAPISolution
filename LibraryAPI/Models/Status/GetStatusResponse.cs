@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace LibraryAPI.Models.Status
 {
@@ -10,6 +6,5 @@ namespace LibraryAPI.Models.Status
     {
         public string Message { get; set; }
         public DateTime CreatedAt { get; set; }
-
     }
 }

@@ -1,10 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace LibraryAPI.Models.Employees
+﻿namespace LibraryAPI.Models.Employees
 {
     public class GetEmployeeDetailsResponse
     {
@@ -13,7 +7,5 @@ namespace LibraryAPI.Models.Employees
         public string Department { get; set; }
         public decimal Salary { get; set; }
         public string Manager { get; set; }
-
-
     }
 }

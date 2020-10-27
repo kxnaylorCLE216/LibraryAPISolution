@@ -1,21 +1,13 @@
-﻿
-
-using LibraryAPI.Models.Employees;
+﻿using LibraryAPI.Models.Employees;
 using LibraryAPI.Models.Status;
 using LibraryAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
 
 namespace LibraryAPI.Controllers
 {
-
     public class DemoController : ControllerBase
     {
-
         private readonly IProvideServerStatusInformation _statusService;
 
         public DemoController(IProvideServerStatusInformation statusService)
@@ -27,8 +19,21 @@ namespace LibraryAPI.Controllers
         [HttpGet("/status")]
         public ActionResult GetTheStatus()
         {
-            GetStatusResponse response = _statusService.GetCurrentStatus();
+            GetStatusResponse response = null;
             //return Ok(new { Message = "All is Good", CreatedAt = DateTime.Now });
+
+            try
+            {
+                response = _statusService.GetCurrentStatus();
+            }
+            catch (Exception)
+            {
+                response = new GetStatusResponse
+                {
+                    Message = "Status is unavailable",
+                    CreatedAt = new DateTime()
+                };
+            }
 
             return Ok(response);
         }
@@ -46,8 +51,6 @@ namespace LibraryAPI.Controllers
             return Ok($"Getting the blog posts for {month}/{day}/{year}");
         }
 
-
-
         // GET /agents
         // GET /agents?state=CO
         [HttpGet("/agents")]
@@ -55,7 +58,6 @@ namespace LibraryAPI.Controllers
         {
             return Ok($"Getting Agents from State {state} and city {city}");
         }
-
 
         [HttpGet("/whoami")] // User-Agent
         public ActionResult GetUserAgent([FromHeader(Name = "User-Agent")] string userAgent)

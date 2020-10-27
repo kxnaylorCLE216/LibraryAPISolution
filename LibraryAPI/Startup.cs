@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LibraryAPI.Data;
 using LibraryAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,10 +29,12 @@ namespace LibraryAPI
         {
             services.AddControllers();
 
-            //services.AddTransient
-            //services.AddScoped
-            //services.AddSingleton
             services.AddTransient<IProvideServerStatusInformation, HealthMonitoringApiServerStatus>();
+
+            services.AddDbContext<LibraryDataContext>(options =>
+            { 
+                options.UseSqlServer(@"server=.\sqlexpress;database=books_prod;integrated security=true");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
