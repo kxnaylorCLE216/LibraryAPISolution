@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LibraryAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,11 @@ namespace LibraryAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //services.AddTransient
+            //services.AddScoped
+            //services.AddSingleton
+            services.AddTransient<IProvideServerStatusInformation, HealthMonitoringApiServerStatus>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,8 @@
 ﻿
 
 using LibraryAPI.Models.Employees;
+using LibraryAPI.Models.Status;
+using LibraryAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +15,22 @@ namespace LibraryAPI.Controllers
 
     public class DemoController : ControllerBase
     {
+
+        private readonly IProvideServerStatusInformation _statusService;
+
+        public DemoController(IProvideServerStatusInformation statusService)
+        {
+            _statusService = statusService;
+        }
+
         // GET /status
         [HttpGet("/status")]
         public ActionResult GetTheStatus()
         {
-            return Ok(new { Message = "All is Good", CreatedAt = DateTime.Now });
+            GetStatusResponse response = _statusService.GetCurrentStatus();
+            //return Ok(new { Message = "All is Good", CreatedAt = DateTime.Now });
+
+            return Ok(response);
         }
 
         // GET /employees/99

@@ -48,7 +48,7 @@ namespace LibraryApiIntegrationTests
             var response = await _client.GetAsync("/status");
             var content = await response.Content.ReadAsAsync<GetStatusResponse>();
 
-            Assert.Equal("All is Good", content.message);
+            Assert.Equal("Everything is Good", content.message);
 
         }
 
