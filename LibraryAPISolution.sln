@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPI", "LibraryAPI\LibraryAPI.csproj", "{13E9AF59-6A7F-452C-B486-B3F3214C890F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryAPI", "LibraryAPI\LibraryAPI.csproj", "{13E9AF59-6A7F-452C-B486-B3F3214C890F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryAPIIntegrationTests", "XUnitTestProject1\LibraryAPIIntegrationTests.csproj", "{43DC85AF-681F-425F-93FC-DBC383809062}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{13E9AF59-6A7F-452C-B486-B3F3214C890F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E9AF59-6A7F-452C-B486-B3F3214C890F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13E9AF59-6A7F-452C-B486-B3F3214C890F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DC85AF-681F-425F-93FC-DBC383809062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DC85AF-681F-425F-93FC-DBC383809062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DC85AF-681F-425F-93FC-DBC383809062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DC85AF-681F-425F-93FC-DBC383809062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
