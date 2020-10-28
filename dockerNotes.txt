@@ -1,0 +1,24 @@
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=TokyoJoe138!' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=TokyoJoe138!' -p 1433:1433 --name SQL -d mcr.microsoft.com/mssql/server:2019-latest
+
+docker stop SQL
+
+docker commit SQL
+
+docker images
+
+PS C:\dev\LibraryAPIFork> docker images
+REPOSITORY                       TAG                 IMAGE ID            CREATED             SIZE
+<none>                           <none>              27043d94d47a        24 seconds ago      1.55GB
+mcr.microsoft.com/mssql/server   2019-latest         5ced205176bc        3 weeks ago         1.43GB
+mongo                            latest              ba0c2ff8d362        4 weeks ago         492MB
+PS C:\dev\LibraryAPIFork> docker tag 27043d94d47a kylenaylor/librarysql-oct2020
+
+
+docker build -f .\LibraryAPI\Dockerfile -t kylenaylor/api .
+
+
+PS C:\dev\LibraryAPISolution> docker build -f .\LibraryAPI\Dockerfile -t kylenaylor/api .
+
+https://gist.github.com/JeffryGonzalez/eec394828e2a876981984401102975e8
