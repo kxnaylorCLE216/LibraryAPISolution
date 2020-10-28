@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace LibraryAPI.Data
 {
@@ -14,6 +15,11 @@ namespace LibraryAPI.Data
         {
             modelBuilder.Entity<Book>().Property(b => b.Title).HasMaxLength(200);
             modelBuilder.Entity<Book>().Property(b => b.Author).HasMaxLength(200);
+        }
+
+        public IQueryable<Book> GetBooksThatAreInInventory()
+        {
+            return Books.Where(b => b.IsInInventory == true);
         }
     }
 }
