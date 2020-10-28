@@ -22,6 +22,7 @@ namespace LibraryAPI.Controllers
             GetStatusResponse response = null;
             //return Ok(new { Message = "All is Good", CreatedAt = DateTime.Now });
 
+
             try
             {
                 response = _statusService.GetCurrentStatus();
