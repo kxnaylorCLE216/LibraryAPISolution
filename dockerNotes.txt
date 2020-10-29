@@ -22,3 +22,5 @@ docker build -f .\LibraryAPI\Dockerfile -t kylenaylor/api .
 PS C:\dev\LibraryAPISolution> docker build -f .\LibraryAPI\Dockerfile -t kylenaylor/api .
 
 https://gist.github.com/JeffryGonzalez/eec394828e2a876981984401102975e8
+
+docker build -f .\LibraryAPI\Dockerfile -t kylenaylor/api .  
